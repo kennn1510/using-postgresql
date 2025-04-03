@@ -18,7 +18,9 @@
   "homepage": "https://github.com/kennn1510/using-postgresql#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "pg": "^8.14.1"
   }
 }
