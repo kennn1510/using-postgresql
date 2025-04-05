@@ -1,11 +1,22 @@
 const db = require("../db/queries");
 require("dotenv").config();
 
-
 exports.usernameGet = async (req, res) => {
-  const usernames = await db.getAllUsernames();
-  console.log("Usernames: ", usernames);
-  res.send("Usernames: " + usernames.map((user) => user.username).join(", "));
+  const searchTerm = req.query.search;
+  let usernames;
+  if (searchTerm) {
+    usernames = await db.searchUsernames(searchTerm);
+    console.log(`Usernames matching ${searchTerm}:`, usernames);
+    res.send(
+      `Usernames matching ${searchTerm}: ${usernames
+        .map((user) => user.username)
+        .join(", ")}`
+    );
+  } else {
+    usernames = await db.getAllUsernames();
+    console.log("Usernames: ", usernames);
+    res.send("Usernames: " + usernames.map((user) => user.username).join(", "));
+  }
 };
 
 exports.newUsernameGet = (req, res) => {
