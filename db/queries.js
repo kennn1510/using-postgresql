@@ -23,8 +23,15 @@ async function searchUsernames(searchTerm) {
   }
 }
 
+async function deleteAllUsernames() {
+  console.log("Starting to delete all usernames");
+  await pool.query("DELETE FROM usernames");
+  console.log("All usernames have been deleted");
+}
+
 module.exports = {
   getAllUsernames,
   insertUsername,
   searchUsernames,
+  deleteAllUsernames,
 };

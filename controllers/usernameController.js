@@ -28,3 +28,10 @@ exports.newUsernamePost = async (req, res) => {
   await db.insertUsername(username);
   res.redirect("/");
 };
+
+exports.usernameDeleteGet = async (req, res) => {
+  console.log("Database function to delete all usernames running...");
+  await db.deleteAllUsernames();
+  console.log("Database function completed");
+  res.redirect("/");
+};
